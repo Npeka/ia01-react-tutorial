@@ -141,24 +141,33 @@ export default function Game() {
   const sortedMoves = isAscending ? moves : moves.slice().reverse();
 
   return (
-    <div className="game">
-      <div className="game-board">
-        <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
+    <>
+      <h1 className="app-title">IA01 React Tutorial</h1>
+      <div className="game-container">
+        <div className="game">
+          <div className="game-board">
+            <Board
+              xIsNext={xIsNext}
+              squares={currentSquares}
+              onPlay={handlePlay}
+            />
+          </div>
+          <div className="game-info">
+            <label className="toggle-switch">
+              <input
+                type="checkbox"
+                checked={isAscending}
+                onChange={toggleSortOrder}
+              />
+              <span className="slider" />
+              <span className="label-text">
+                {isAscending ? "Ascending" : "Descending"}
+              </span>
+            </label>
+            <ol>{sortedMoves}</ol>
+          </div>
+        </div>
       </div>
-      <div className="game-info">
-        <label className="toggle-switch">
-          <input
-            type="checkbox"
-            checked={isAscending}
-            onChange={toggleSortOrder}
-          />
-          <span className="slider" />
-          <span className="label-text">
-            {isAscending ? "Ascending" : "Descending"}
-          </span>
-        </label>
-        <ol>{sortedMoves}</ol>
-      </div>
-    </div>
+    </>
   );
 }
